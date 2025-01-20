@@ -1,0 +1,121 @@
+<div class="card mt-5">
+    <div class="card-header">Pridėti naują klientą</div>
+    <div class="card-body">
+
+        <app-loading *ngIf="isLoading"></app-loading>
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+        <form (ngSubmit)="updateRecord(f)" #f="ngForm">
+
+        
+        <div class="mb-3">
+            <label for="clientName" class="form-label">Kliento vardas</label>
+            <input 
+                    type="text" 
+                    name="clientName" 
+                    id="clientName" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputClientName.valid && inputClientName.touched" 
+                    [(ngModel)]="clientName"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputClientName="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="clientSurname" class="form-label">Kliento pavardė</label>
+            <input 
+                    type="text" 
+                    name="clientSurname" 
+                    id="clientSurname" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputClientSurname.valid && inputClientSurname.touched" 
+                    [(ngModel)]="clientSurname"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputClientSurname="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Telefono numeris</label>
+            <input 
+                    type="text" 
+                    name="phone" 
+                    id="phone" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputPhone.valid && inputPhone.touched" 
+                    [(ngModel)]="phone"
+                    required
+                    #inputPhone="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">El.paštas</label>
+            <input 
+                    type="text" 
+                    name="email" 
+                    id="email" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputEmail.valid && inputEmail.touched" 
+                    [(ngModel)]="email"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputEmail="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="comment" class="form-label">Komentaras</label>
+            <input 
+                    type="text" 
+                    name="comment" 
+                    id="comment" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputComment.valid && inputComment.touched" 
+                    [(ngModel)]="comment"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputComment="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="companyName" class="form-label">Įmonės pavadinimas</label>
+            <input 
+                    type="text" 
+                    name="companyName" 
+                    id="companyName" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputCompanyName.valid && inputCompanyName.touched" 
+                    [(ngModel)]="companyName"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputCompanyName="ngModel"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="companyAddress" class="form-label">Įmonės adresas</label>
+            <input 
+                    type="text" 
+                    name="companyAddress" 
+                    id="companyAddress" 
+                    class="form-control" 
+                    [class.is-invalid]="!inputCompanyAddress.valid && inputCompanyAddress.touched" 
+                    [(ngModel)]="companyAddress"
+                    required
+                    minlength="2"
+                    maxlength="32"
+                    #inputCompanyAddress="ngModel"
+            >
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!f.valid" >Atnaujinti</button>
+    </form>
+    </div>
+</div>

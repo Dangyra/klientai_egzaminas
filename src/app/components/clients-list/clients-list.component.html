@@ -1,0 +1,112 @@
+<div class="card mt-5">
+    <div class="card-header">Klientų sąrašas</div>
+    <div class="card-body">
+        <app-loading  *ngIf="isLoading"></app-loading>
+        
+
+        <div class="alert alert-danger" *ngIf="isError">
+            Įvyko klaida
+
+        </div>
+        
+        <div class="mb-3">
+            <label for="filterName" class="form-label">Filtruoti pagal vardą</label>
+            <input
+              id="filterName"
+              type="text"
+              class="form-control"
+              [(ngModel)]="filters.clientName"
+              (ngModelChange)="updateFilteredClients()"
+              placeholder="Įveskite vardą"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="filterSurname" class="form-label">Filtruoti pagal pavardę</label>
+            <input
+              id="filterSurname"
+              type="text"
+              class="form-control"
+              [(ngModel)]="filters.clientSurname"
+              (ngModelChange)="updateFilteredClients()"
+              placeholder="Įveskite pavardę"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="filterCompanyName" class="form-label">Filtruoti pagal kompanijos pavadinimą</label>
+            <input
+              id="filterCompanyName"
+              type="text"
+              class="form-control"
+              [(ngModel)]="filters.companyName"
+              (ngModelChange)="updateFilteredClients()"
+              placeholder="Įveskite kompanijos pavadinimą"
+            />
+          </div>
+
+        <table class="table" *ngIf="!isLoading && !isError">
+            <thead>
+                <tr>
+                    <th>
+                        Kliento vardas
+                    </th>
+                    <th>
+                        Kliento pavardė
+                    </th>
+                    <th>
+                        Telefono numeris
+                    </th>
+                    <th>
+                        El.paštas
+                    </th>
+                    <th>
+                        Komentaras
+                    </th>
+                    <th>
+                        Kompanijos pavadinimas
+                    </th>
+                    <th>
+                        Kompanijos adresas
+                    </th>
+                    <th style="width: 200px;">
+                        Veiksmai
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of filteredClients; let i=index">
+                    <td>
+                        {{ client.clientName }} 
+                    </td>
+                    <td>
+                        {{ client.clientSurname }}
+                    </td>
+                    <td>
+                        {{ client.phone }}
+                    </td>
+                    <td>
+                        {{ client.email }}
+                    </td>
+                    <td>
+                        {{ client.comment }}
+                    </td>
+                    <td>
+                        {{ client.companyName }}
+                    </td>
+                    <td>
+                        {{ client.companyAddress }}
+                    </td>
+                    <td>
+                       <a  class="btn btn-success me-3" [routerLink]="['/client', client.id]">Redaguoti</a>
+                       <button class="btn btn-danger" (click)="deleteClient(client.id)">Ištrinti</button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        
+           
+        
+    </div>
+    
+</div>
